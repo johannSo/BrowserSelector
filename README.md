@@ -1,7 +1,7 @@
 # Linux Browser Selector
 Choose your web browser for links in any app on Linux, and remember your choice if needed. Customize the browsers (or apps) you want to use.
 <br><br>
-![](images/screenshot.png)
+![](Screenshot from 2024-08-27 18-15-57.png)
 <br>
 Above, a link to GitLab is opened, and five browser options have been configured.
 
