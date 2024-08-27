@@ -15,9 +15,8 @@ It is basically a replacement of your default web browser in the first place, so
 The script is a combination of the functions from [Junction](https://github.com/sonnyp/Junction) on Linux -- much like [Choosy](https://www.choosyosx.com/) on Mac, or [BrowseRouter](https://github.com/slater1/BrowseRouter) on Win.
 
 ## Installation
-### ToDo till 29. Aug 2024:
 * Download (and extract) or clone the repo (see buttons above on the right hand side)
-* run the .sh file in `install/` to install all dependencies (like Python 2 and Qt 4)
+* run the .sh file in `install/` to install all dependencies (like Python 3 and GTK 4)
     * `cd install && chmod +x *.sh`
     * `./browserSelectorInstall.sh`
 * change `browserSelectorInstall.py` file in `source/` to reflect your setup and needs
