@@ -8,13 +8,14 @@ Choose your web browser for links in any app on Linux, and remember your choice 
 
 
 ## Description
-Whenever you click on a link (or web-related file), you can choose which web browser shall be used to open it. By clicking the RMBR checkbox, the script will remember your choice for the next time for this particular domain or file, so the script works silently in the background.
+Whenever you click on a link (or web-related file), you can choose which web browser shall be used to open it.
 <br>
 It is basically a replacement of your default web browser in the first place, so you can use it to subsequently call and run different browsers instead, e.g. one for anonymous surfing, one for online accounts, one for secure banking, another one for coding, testing and so on.
 <br>
 The script is a combination of the functions from [Junction](https://github.com/sonnyp/Junction) on Linux -- much like [Choosy](https://www.choosyosx.com/) on Mac, or [BrowseRouter](https://github.com/slater1/BrowseRouter) on Win.
 
 ## Installation
+### ToDo till 29. Aug 2024:
 * Download (and extract) or clone the repo (see buttons above on the right hand side)
 * run the .sh file in `install/` to install all dependencies (like Python 2 and Qt 4)
     * `cd install && chmod +x *.sh`
