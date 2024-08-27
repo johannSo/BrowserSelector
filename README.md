@@ -1,9 +1,11 @@
 # Linux Browser Selector
 Choose your web browser for links in any app on Linux, and remember your choice if needed. Customize the browsers (or apps) you want to use.
 <br><br>
-![](/Screenshot from 2024-08-27 18-15-57.png)
+
+
+
 <br><br>
-Above, a link to GitLab is opened, and five browser options have been configured.
+
 
 ## Description
 Whenever you click on a link (or web-related file), you can choose which web browser shall be used to open it. By clicking the RMBR checkbox, the script will remember your choice for the next time for this particular domain or file, so the script works silently in the background.
