@@ -2,7 +2,7 @@
 Choose your web browser for links in any app on Linux, and remember your choice if needed. Customize the browsers (or apps) you want to use.
 <br><br>
 
-
+![](https://github.com/johannSo/GTK-Browser_Selector/blob/main/images/v2.1.png?raw=true)
 
 <br><br>
 
