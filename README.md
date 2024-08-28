@@ -56,5 +56,8 @@ MIT
 ## Status
 * Release: testing
 
+#### Gitlab:
+[Gitlab](https://gitlab.com/johannSo/gtk-linux-browser-selector)
+
 ## Idea:
 Original idea by [ToSo](https://gitlab.com/ToS0/browserselector/)
