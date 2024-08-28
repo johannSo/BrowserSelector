@@ -55,3 +55,6 @@ MIT
 
 ## Status
 * Release: testing
+
+## Idea:
+Original idea by [ToSo](https://gitlab.com/ToS0/browserselector/)
