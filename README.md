@@ -44,9 +44,6 @@ The script is a combination of the functions from [Junction](https://github.com/
     * you may also run `xdg-settings set default-web-browser browserSelector.desktop` from your shell instead
 * test it e.g. with `xdg-open https://gitlab.com`, or `xdg-open ../tests/ab.html`
 
-## Known Issues
-In case your browser doesn't open, its process may hang for some reason -- then simply check and kill it, e.g. with `ps -fe | grep chrome` and `pkill -9 chrome`
-
 ## Support
 Please try a [Search](https://presearch.com/) first, then post your Issue -- maybe someone can help you. I'm just a hobby coder 😊
 
