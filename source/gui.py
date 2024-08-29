@@ -41,18 +41,18 @@ def on_activate(app):
 
     win.set_decorated(False)
 
-    css = """
-    window {
-        border-radius: 20px;
-        background: #333;
-    }
-    entry {
-        color: white; /* Schriftfarbe auf Weiß setzen */
-        background-color: #444; /* Hintergrundfarbe des Eingabefelds */
-    }
-    """
-    style_provider = Gtk.CssProvider()
-    style_provider.load_from_data(css.encode('utf-8'))  # CSS in Bytes umwandeln (WTF! Why?)
+    #css = """
+    #window {
+    #    border-radius: 20px;
+    #    background: #333;
+    #}
+    #entry {
+    #    color: white; /* Schriftfarbe auf Weiß setzen */
+    #    background-color: #444; /* Hintergrundfarbe des Eingabefelds */
+    #}
+    #"""
+    #style_provider = Gtk.CssProvider()
+    #style_provider.load_from_data(css.encode('utf-8'))  # CSS in Bytes umwandeln (WTF! Why?)
     Gtk.StyleContext.add_provider_for_display(
         Gdk.Display.get_default(),
         style_provider,
