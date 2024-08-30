@@ -53,11 +53,11 @@ def on_activate(app):
     #"""
     #style_provider = Gtk.CssProvider()
     #style_provider.load_from_data(css.encode('utf-8'))  # CSS in Bytes umwandeln (WTF! Why?)
-    Gtk.StyleContext.add_provider_for_display(
-        Gdk.Display.get_default(),
-        style_provider,
-        Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-    )
+    #Gtk.StyleContext.add_provider_for_display(
+    #    Gdk.Display.get_default(),
+    #    style_provider,
+    #    Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+    #)
 
     hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=20)
     hbox.set_halign(Gtk.Align.CENTER)
