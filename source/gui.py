@@ -52,7 +52,7 @@ def on_activate(app):
     #}
     #"""
     #style_provider = Gtk.CssProvider()
-    #style_provider.load_from_data(css.encode('utf-8'))  # CSS in Bytes umwandeln (WTF! Why?)
+    #style_provider.load_from_data(css.encode('utf-8'))  # CSS in Bytes umwandeln
     #Gtk.StyleContext.add_provider_for_display(
     #    Gdk.Display.get_default(),
     #    style_provider,
