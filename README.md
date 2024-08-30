@@ -24,8 +24,7 @@ The script is a combination of the functions from [Junction](https://github.com/
 * test it e.g. with `./browserSelector.py https://gitlab.com`, or `./browserSelector.py ../tests/ab.html`
 
 ## Default Config
-* change `browserSelector.desktop` file in `install/` as needed on your system
-    * and copy it to your appropriate path (e.g. `~/.local/share/applications/`)
+*To use your own Browsers in the Selector you hav to add your execution command in the source/gui.py file! (I'am working on an automatic version)
 * add `browserSelector.desktop` to the following protocol entries in `~/.config/mimeapps.list`:
     * in section `[Default Applications]` to (separated by semicolon)
         * `text/html`
