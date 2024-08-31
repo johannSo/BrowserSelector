@@ -36,12 +36,16 @@ exec_command_fire = entry_fire.getExec()
 def launch_browser(exec_command):
     subprocess.run(exec_command, shell=True, capture_output=True, text=True)
 
+def remember(link):
+    base_url = "/".join(link.split("/")[:3])
+    with open("output.json", "w") as json_file:
+        json.dump([base_url], json_file)
+
 def on_activate(app):
     global win
     win = Gtk.ApplicationWindow(application=app, title="BrowserSelector")
 
     win.set_decorated(False)
-
 
     hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=20)
     hbox.set_halign(Gtk.Align.CENTER)
@@ -64,8 +68,7 @@ def on_activate(app):
     btn1.connect('clicked', lambda button: on_button_clicked(exec_command))
     btn2.connect('clicked', lambda button: on_button_clicked(exec_command_brave))
     btn3.connect('clicked', lambda button: on_button_clicked(exec_command_fire))
-    btn4.connect('clicked', lambda button: on_button_clicked(remember))
-
+    btn4.connect('clicked', lambda button: remember(link_entry.get_text()))
 
     hbox.append(btn2)
     hbox.append(btn1)
@@ -78,12 +81,6 @@ def on_activate(app):
 
     win.set_child(vbox)
     win.present()
-
-    #Remeber:
-    link = link_entry.get_text()
-    base_url = "/".join(link.split("/")[:3])
-    def remember():
-        pass
 
 app = Gtk.Application(application_id='com.joso.browserselector')
 app.connect('activate', on_activate)
