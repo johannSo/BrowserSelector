@@ -4,6 +4,7 @@ import getpass
 import threading
 import sys
 from xdg.DesktopEntry import DesktopEntry
+import json
 
 gi.require_version('Gtk', '4.0')
 from gi.repository import Gtk, Gdk
@@ -90,6 +91,11 @@ def on_activate(app):
 
     win.set_child(vbox)
     win.present()
+
+    link = link_entry.get_text()
+    #Remeber:
+    base_url = "/".join(link.split("/")[:3])
+    print(base_url)
 
 app = Gtk.Application(application_id='com.joso.browserselector')
 app.connect('activate', on_activate)
