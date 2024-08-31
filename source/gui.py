@@ -42,23 +42,6 @@ def on_activate(app):
 
     win.set_decorated(False)
 
-    #css = """
-    #window {
-    #    border-radius: 20px;
-    #    background: #333;
-    #}
-    #entry {
-    #    color: white; /* Schriftfarbe auf Weiß setzen */
-    #    background-color: #444; /* Hintergrundfarbe des Eingabefelds */
-    #}
-    #"""
-    #style_provider = Gtk.CssProvider()
-    #style_provider.load_from_data(css.encode('utf-8'))  # CSS in Bytes umwandeln
-    #Gtk.StyleContext.add_provider_for_display(
-    #    Gdk.Display.get_default(),
-    #    style_provider,
-    #    Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-    #)
 
     hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=20)
     hbox.set_halign(Gtk.Align.CENTER)
@@ -76,10 +59,13 @@ def on_activate(app):
     btn1 = Gtk.Button(label=name)
     btn2 = Gtk.Button(label=name_brave)
     btn3 = Gtk.Button(label=name_fire)
+    btn4 = Gtk.Button(label="Remember")
 
     btn1.connect('clicked', lambda button: on_button_clicked(exec_command))
     btn2.connect('clicked', lambda button: on_button_clicked(exec_command_brave))
     btn3.connect('clicked', lambda button: on_button_clicked(exec_command_fire))
+    btn4.connect('clicked', lambda button: on_button_clicked(remember))
+
 
     hbox.append(btn2)
     hbox.append(btn1)
@@ -88,14 +74,16 @@ def on_activate(app):
     vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
     vbox.append(hbox)
     vbox.append(link_entry)
+    vbox.append(btn4)
 
     win.set_child(vbox)
     win.present()
 
-    link = link_entry.get_text()
     #Remeber:
+    link = link_entry.get_text()
     base_url = "/".join(link.split("/")[:3])
-    print(base_url)
+    def remember():
+        pass
 
 app = Gtk.Application(application_id='com.joso.browserselector')
 app.connect('activate', on_activate)
