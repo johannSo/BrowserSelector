@@ -8,7 +8,7 @@ import json
 import os
 
 gi.require_version('Gtk', '4.0')
-from gi.repository import Gtk, Gdk
+from gi.repository import Gtk, Gdk, Gio
 
 user = getpass.getuser()
 
@@ -36,9 +36,9 @@ exec_command_fire = entry_fire.getExec()
 
 # Liste aller verfügbaren Browser und ihrer Befehle
 browsers = [
-    {"name": name, "exec_command": exec_command},
-    {"name": name_brave, "exec_command": exec_command_brave},
-    {"name": name_fire, "exec_command": exec_command_fire},
+    {"name": name, "exec_command": exec_command, "icon": "web-browser"},
+    {"name": name_brave, "exec_command": exec_command_brave, "icon": "brave-browser"},
+    {"name": name_fire, "exec_command": exec_command_fire, "icon": "firefox"},
 ]
 
 def launch_browser(exec_command, browser_name):
@@ -50,6 +50,7 @@ def remember(link, browser_name):
         "browser": browser_name
     }
 
+    # Überprüfen, ob die Datei bereits existiert
     if os.path.exists("output.json"):
         # Bestehende Einträge laden
         with open("output.json", "r") as json_file:
@@ -57,6 +58,7 @@ def remember(link, browser_name):
     else:
         entries = []
 
+    # Aktualisiere oder füge den Eintrag hinzu
     for existing_entry in entries:
         if existing_entry["url"] == link:
             existing_entry["browser"] = browser_name
@@ -64,6 +66,7 @@ def remember(link, browser_name):
     else:
         entries.append(entry)
 
+    # Einträge zurück in die JSON-Datei schreiben
     with open("output.json", "w") as json_file:
         json.dump(entries, json_file, indent=4)
 
@@ -96,15 +99,18 @@ def on_activate(app):
         full_command = f"{exec_command} '{link}'"
         threading.Thread(target=launch_browser, args=(full_command, browser_name)).start()
 
+        # Speichere die URL und den Browser, wenn die Checkbox aktiviert ist
         if remember_checkbox.get_active():
             remember(link, browser_name)
 
         win.destroy()
 
+    # Prüfe, ob die URL bereits in der JSON-Datei gespeichert ist
     link = link_entry.get_text()
     saved_browser = get_browser_for_link(link)
 
     if saved_browser:
+        # Wenn ein Browser für diese URL gespeichert ist, finde den zugehörigen Befehl
         for browser in browsers:
             if browser["name"] == saved_browser:
                 full_command = f"{browser['exec_command']} '{link}'"
@@ -112,24 +118,26 @@ def on_activate(app):
                 win.destroy()
                 return
 
-    btn1 = Gtk.Button(label=name)
-    btn2 = Gtk.Button(label=name_brave)
-    btn3 = Gtk.Button(label=name_fire)
+    for browser in browsers:
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=5)
 
-    btn1.connect('clicked', lambda button: on_button_clicked(exec_command, name))
-    btn2.connect('clicked', lambda button: on_button_clicked(exec_command_brave, name_brave))
-    btn3.connect('clicked', lambda button: on_button_clicked(exec_command_fire, name_fire))
+        # Icon hinzufügen (mit fester Größe)
+        icon = Gtk.Image.new_from_icon_name(browser["icon"]) #, Gtk.IconSize.LARGE)
+        vbox.append(icon)
 
-    hbox.append(btn2)
-    hbox.append(btn1)
-    hbox.append(btn3)
+        # Button hinzufügen
+        btn = Gtk.Button(label=browser["name"])
+        btn.connect('clicked', lambda button, b=browser: on_button_clicked(b["exec_command"], b["name"]))
+        vbox.append(btn)
 
-    vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
-    vbox.append(hbox)
-    vbox.append(link_entry)
-    vbox.append(remember_checkbox)
+        hbox.append(vbox)
 
-    win.set_child(vbox)
+    vbox_main = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+    vbox_main.append(hbox)
+    vbox_main.append(link_entry)
+    vbox_main.append(remember_checkbox)
+
+    win.set_child(vbox_main)
     win.present()
 
 app = Gtk.Application(application_id='com.joso.browserselector')
