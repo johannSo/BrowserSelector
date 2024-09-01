@@ -11,6 +11,7 @@ gi.require_version('Gtk', '4.0')
 from gi.repository import Gtk, Gdk, Gio
 
 user = getpass.getuser()
+iconSize = [48, 48]
 
 argument = ""
 if len(sys.argv) > 1:
@@ -35,7 +36,7 @@ name_fire = entry_fire.getName()
 exec_command_fire = entry_fire.getExec()
 
 browsers = [
-    {"name": name, "exec_command": exec_command, "icon": "web-browser"},
+    {"name": 'Chromium', "exec_command": exec_command, "icon": "web-browser"},
     {"name": name_brave, "exec_command": exec_command_brave, "icon": "brave-browser"},
     {"name": name_fire, "exec_command": exec_command_fire, "icon": "firefox"},
 ]
