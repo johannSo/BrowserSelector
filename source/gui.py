@@ -34,7 +34,6 @@ entry_fire.parse('/usr/share/applications/firefox.desktop')
 name_fire = entry_fire.getName()
 exec_command_fire = entry_fire.getExec()
 
-# Liste aller verfügbaren Browser und ihrer Befehle
 browsers = [
     {"name": name, "exec_command": exec_command, "icon": "web-browser"},
     {"name": name_brave, "exec_command": exec_command_brave, "icon": "brave-browser"},
@@ -50,7 +49,6 @@ def remember(link, browser_name):
         "browser": browser_name
     }
 
-    # Überprüfen, ob die Datei bereits existiert
     if os.path.exists("output.json"):
         # Bestehende Einträge laden
         with open("output.json", "r") as json_file:
@@ -58,7 +56,6 @@ def remember(link, browser_name):
     else:
         entries = []
 
-    # Aktualisiere oder füge den Eintrag hinzu
     for existing_entry in entries:
         if existing_entry["url"] == link:
             existing_entry["browser"] = browser_name
@@ -66,7 +63,6 @@ def remember(link, browser_name):
     else:
         entries.append(entry)
 
-    # Einträge zurück in die JSON-Datei schreiben
     with open("output.json", "w") as json_file:
         json.dump(entries, json_file, indent=4)
 
@@ -99,18 +95,15 @@ def on_activate(app):
         full_command = f"{exec_command} '{link}'"
         threading.Thread(target=launch_browser, args=(full_command, browser_name)).start()
 
-        # Speichere die URL und den Browser, wenn die Checkbox aktiviert ist
         if remember_checkbox.get_active():
             remember(link, browser_name)
 
         win.destroy()
 
-    # Prüfe, ob die URL bereits in der JSON-Datei gespeichert ist
     link = link_entry.get_text()
     saved_browser = get_browser_for_link(link)
 
     if saved_browser:
-        # Wenn ein Browser für diese URL gespeichert ist, finde den zugehörigen Befehl
         for browser in browsers:
             if browser["name"] == saved_browser:
                 full_command = f"{browser['exec_command']} '{link}'"
@@ -121,11 +114,9 @@ def on_activate(app):
     for browser in browsers:
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=5)
 
-        # Icon hinzufügen (mit fester Größe)
         icon = Gtk.Image.new_from_icon_name(browser["icon"]) #, Gtk.IconSize.LARGE)
         vbox.append(icon)
 
-        # Button hinzufügen
         btn = Gtk.Button(label=browser["name"])
         btn.connect('clicked', lambda button, b=browser: on_button_clicked(b["exec_command"], b["name"]))
         vbox.append(btn)
