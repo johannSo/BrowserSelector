@@ -55,3 +55,8 @@ MIT
 
 ## Idea:
 Original idea by [ToSo](https://gitlab.com/ToS0/browserselector/)
+
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=johannSo/GTK-Browser_Selector&type=Date)](https://star-history.com/#johannSo/GTK-Browser_Selector&Date)
