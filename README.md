@@ -46,11 +46,15 @@ The script is a combination of the functions from [Junction](https://github.com/
 ## Support
 Please try a [Search](https://presearch.com/) first, then post your Issue -- maybe someone can help you. I'm just a hobby coder 😊
 
+## ToDo:
+- Add icons to app
+- Add app icon
+
 ## License
 MIT
 
 ## Status
-* Release: testing
+* Release: stable
 
 
 ## Idea:
