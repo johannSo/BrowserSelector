@@ -6,6 +6,9 @@ import sys
 from xdg.DesktopEntry import DesktopEntry
 import json
 import os
+import configparser
+from gi.repository import Gtk, GdkPixbuf
+
 
 gi.require_version('Gtk', '4.0')
 from gi.repository import Gtk, Gdk, Gio
