@@ -6,14 +6,17 @@ import sys
 from xdg.DesktopEntry import DesktopEntry
 import json
 import os
-import configparser
-
 
 gi.require_version('Gtk', '4.0')
-from gi.repository import Gtk, Gdk, Gio
+gi.require_version('Gdk', '4.0')
+gi.require_version('GdkPixbuf', '2.0')
+
+from gi.repository import Gtk, Gdk, GdkPixbuf, Gio
+
+# The rest of your script goes here, including the load_icon function and main application logic
+
 
 user = getpass.getuser()
-iconSize = [48, 48]
 
 argument = ""
 if len(sys.argv) > 1:
@@ -24,24 +27,39 @@ entry_brave = DesktopEntry()
 entry_brave.parse(f'/home/{user}/.local/share/flatpak/exports/share/applications/com.brave.Browser.desktop')
 name_brave = entry_brave.getName()
 exec_command_brave = entry_brave.getExec()
+icon_brave = entry_brave.getIcon()
 
 # Chromium Flatpak
 entry = DesktopEntry()
 entry.parse(f'/home/{user}/.local/share/applications/org.chromium.Chromium.desktop')
 name = entry.getName()
 exec_command = entry.getExec()
+icon_chromium = entry.getIcon()
 
 # Firefox Native
 entry_fire = DesktopEntry()
 entry_fire.parse('/usr/share/applications/firefox.desktop')
 name_fire = entry_fire.getName()
 exec_command_fire = entry_fire.getExec()
+icon_firefox = entry_fire.getIcon()
 
 browsers = [
-    {"name": 'Chromium', "exec_command": exec_command, "icon": "web-browser"},
-    {"name": name_brave, "exec_command": exec_command_brave, "icon": "brave-browser"},
-    {"name": name_fire, "exec_command": exec_command_fire, "icon": "firefox"},
+    {"name": name, "exec_command": exec_command, "icon": icon_chromium},
+    {"name": name_brave, "exec_command": exec_command_brave, "icon": icon_brave},
+    {"name": name_fire, "exec_command": exec_command_fire, "icon": icon_firefox},
 ]
+
+def load_icon(icon_name):
+    # Check if the icon name is a path to a file
+    if os.path.isfile(icon_name):
+        # Load the icon from a file path
+        pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(icon_name, 48, 48)
+    else:
+        # Load the icon using Gio.IconTheme in GTK 4
+        icon_theme = Gtk.IconTheme.get_for_display(Gdk.Display.get_default())
+        icon = Gio.ThemedIcon.new(icon_name)
+        pixbuf = icon_theme.lookup_icon(icon, 48, 1).load_icon()
+    return pixbuf
 
 def launch_browser(exec_command, browser_name):
     subprocess.run(exec_command, shell=True, capture_output=True, text=True)
@@ -53,7 +71,6 @@ def remember(link, browser_name):
     }
 
     if os.path.exists("output.json"):
-        # Bestehende Einträge laden
         with open("output.json", "r") as json_file:
             entries = json.load(json_file)
     else:
@@ -62,7 +79,7 @@ def remember(link, browser_name):
     for existing_entry in entries:
         if existing_entry["url"] == link:
             existing_entry["browser"] = browser_name
-            break
+            break;
     else:
         entries.append(entry)
 
@@ -115,16 +132,25 @@ def on_activate(app):
                 return
 
     for browser in browsers:
+        # Create a vertical box to hold icon and label
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=5)
 
-        icon = Gtk.Image.new_from_icon_name(browser["icon"]) #, Gtk.IconSize.LARGE)
+        # Load the icon from the desktop entry
+        pixbuf = load_icon(browser["icon"])
+        icon = Gtk.Image.new_from_pixbuf(pixbuf)
         vbox.append(icon)
 
-        btn = Gtk.Button(label=browser["name"])
-        btn.connect('clicked', lambda button, b=browser: on_button_clicked(b["exec_command"], b["name"]))
-        vbox.append(btn)
+        # Add the browser name as a label
+        label = Gtk.Label(label=browser["name"])
+        vbox.append(label)
 
-        hbox.append(vbox)
+        # Create a button and set the vbox as its child
+        btn = Gtk.Button()
+        btn.set_child(vbox)
+        btn.connect('clicked', lambda button, b=browser: on_button_clicked(b["exec_command"], b["name"]))
+
+        # Add the button to the horizontal box
+        hbox.append(btn)
 
     vbox_main = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
     vbox_main.append(hbox)
