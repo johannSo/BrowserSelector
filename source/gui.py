@@ -37,10 +37,20 @@ entry_fire.parse('/usr/share/applications/firefox.desktop')
 name_fire = entry_fire.getName()
 exec_command_fire = entry_fire.getExec()
 
+# Zen Browser Flatpak
+entry_zen = DesktopEntry()
+entry_zen.parse(f'/home/{user}/.local/share/flatpak/exports/share/applications/io.github.zen_browser.zen.desktop')
+name_zen = entry_zen.getName()
+exec_command_zen = "/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=launch-script.sh --file-forwarding io.github.zen_browser.zen @@u %u @@"
+
+# Versuchen Sie, das Icon aus der Desktop-Datei zu extrahieren
+icon_zen = entry_zen.getIcon() or "web-browser"
+
 browsers = [
     {"name": 'Chromium', "exec_command": exec_command, "icon": "web-browser"},
     {"name": name_brave, "exec_command": exec_command_brave, "icon": "brave-browser"},
     {"name": name_fire, "exec_command": exec_command_fire, "icon": "firefox"},
+    {"name": name_zen, "exec_command": exec_command_zen, "icon": icon_zen},
 ]
 
 def launch_browser(exec_command, browser_name):
@@ -84,6 +94,19 @@ def on_activate(app):
 
     win.set_decorated(False)
 
+    # CSS für abgerundete Ecken
+    css_provider = Gtk.CssProvider()
+    css_provider.load_from_data(b"""
+    window {
+        border-radius: 15px;
+        overflow: hidden;
+    }
+    """)
+    Gtk.StyleContext.add_provider_for_display(Gdk.Display.get_default(), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+
+    # Aktivieren Sie die Transparenz für das Fenster
+    # win.set_app_paintable(True)  # Diese Zeile entfernen oder auskommentieren
+
     hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=20)
     hbox.set_halign(Gtk.Align.CENTER)
 
@@ -117,7 +140,8 @@ def on_activate(app):
     for browser in browsers:
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=5)
 
-        icon = Gtk.Image.new_from_icon_name(browser["icon"]) #, Gtk.IconSize.LARGE)
+        icon = Gtk.Image.new_from_icon_name(browser["icon"])
+        icon.set_pixel_size(48)  # Setzen Sie die Icongröße auf 48x48 Pixel
         vbox.append(icon)
 
         btn = Gtk.Button(label=browser["name"])
