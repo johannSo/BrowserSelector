@@ -24,27 +24,35 @@ entry_brave = DesktopEntry()
 entry_brave.parse(f'/home/{user}/.local/share/flatpak/exports/share/applications/com.brave.Browser.desktop')
 name_brave = entry_brave.getName()
 exec_command_brave = entry_brave.getExec()
+icon_zen = entry_brave.getIcon() or "web-browser"
+
 
 # Chromium Flatpak
 entry = DesktopEntry()
 entry.parse(f'/home/{user}/.local/share/applications/org.chromium.Chromium.desktop')
 name = entry.getName()
 exec_command = entry.getExec()
+icon_zen = entry.getIcon() or "web-browser"
+
 
 # Firefox Native
 entry_fire = DesktopEntry()
 entry_fire.parse('/usr/share/applications/firefox.desktop')
 name_fire = entry_fire.getName()
 exec_command_fire = entry_fire.getExec()
+icon_zen = entry_fire.getIcon() or "web-browser"
 
-# Zen Browser Flatpak
+
+# Zen Flatpak
 entry_zen = DesktopEntry()
 entry_zen.parse(f'/home/{user}/.local/share/flatpak/exports/share/applications/io.github.zen_browser.zen.desktop')
 name_zen = entry_zen.getName()
 exec_command_zen = "/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=launch-script.sh --file-forwarding io.github.zen_browser.zen @@u %u @@"
-
-# Versuchen Sie, das Icon aus der Desktop-Datei zu extrahieren
 icon_zen = entry_zen.getIcon() or "web-browser"
+
+
+# Versuchen, das Icon aus der Desktop-Datei zu extrahieren
+
 
 browsers = [
     {"name": 'Chromium', "exec_command": exec_command, "icon": "web-browser"},
@@ -91,6 +99,9 @@ def get_browser_for_link(link):
 def on_activate(app):
     global win
     win = Gtk.ApplicationWindow(application=app, title="BrowserSelector")
+
+    # Setzen Sie hier das Icon für die App
+    win.set_icon_name("web-browser")  # Verwendet ein Standard-Icon
 
     win.set_decorated(False)
 
