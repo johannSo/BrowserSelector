@@ -51,15 +51,13 @@ exec_command_zen = "/usr/bin/flatpak run --branch=stable --arch=x86_64 --command
 icon_zen = entry_zen.getIcon() or "web-browser"
 
 
-# Versuchen, das Icon aus der Desktop-Datei zu extrahieren
-
-
 browsers = [
     {"name": 'Chromium', "exec_command": exec_command, "icon": chromium},
     {"name": name_brave, "exec_command": exec_command_brave, "icon": brave},
     {"name": name_fire, "exec_command": exec_command_fire, "icon": firefox},
     {"name": name_zen, "exec_command": exec_command_zen, "icon": icon_zen},
 ]
+
 
 def launch_browser(exec_command, browser_name):
     subprocess.run(exec_command, shell=True, capture_output=True, text=True)
