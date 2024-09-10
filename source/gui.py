@@ -24,7 +24,7 @@ entry_brave = DesktopEntry()
 entry_brave.parse(f'/home/{user}/.local/share/flatpak/exports/share/applications/com.brave.Browser.desktop')
 name_brave = entry_brave.getName()
 exec_command_brave = entry_brave.getExec()
-icon_zen = entry_brave.getIcon() or "web-browser"
+brave = entry_brave.getIcon() or "web-browser"
 
 
 # Chromium Flatpak
@@ -32,7 +32,7 @@ entry = DesktopEntry()
 entry.parse(f'/home/{user}/.local/share/applications/org.chromium.Chromium.desktop')
 name = entry.getName()
 exec_command = entry.getExec()
-icon_zen = entry.getIcon() or "web-browser"
+chromium = entry.getIcon() or "web-browser"
 
 
 # Firefox Native
@@ -40,7 +40,7 @@ entry_fire = DesktopEntry()
 entry_fire.parse('/usr/share/applications/firefox.desktop')
 name_fire = entry_fire.getName()
 exec_command_fire = entry_fire.getExec()
-icon_zen = entry_fire.getIcon() or "web-browser"
+firefox = entry_fire.getIcon() or "web-browser"
 
 
 # Zen Flatpak
@@ -55,9 +55,9 @@ icon_zen = entry_zen.getIcon() or "web-browser"
 
 
 browsers = [
-    {"name": 'Chromium', "exec_command": exec_command, "icon": "web-browser"},
-    {"name": name_brave, "exec_command": exec_command_brave, "icon": "brave-browser"},
-    {"name": name_fire, "exec_command": exec_command_fire, "icon": "firefox"},
+    {"name": 'Chromium', "exec_command": exec_command, "icon": chromium},
+    {"name": name_brave, "exec_command": exec_command_brave, "icon": brave},
+    {"name": name_fire, "exec_command": exec_command_fire, "icon": firefox},
     {"name": name_zen, "exec_command": exec_command_zen, "icon": icon_zen},
 ]
 
@@ -104,16 +104,6 @@ def on_activate(app):
     win.set_icon_name("web-browser")  # Verwendet ein Standard-Icon
 
     win.set_decorated(False)
-
-    # CSS für abgerundete Ecken
-    css_provider = Gtk.CssProvider()
-    css_provider.load_from_data(b"""
-    window {
-        border-radius: 15px;
-        overflow: hidden;
-    }
-    """)
-    Gtk.StyleContext.add_provider_for_display(Gdk.Display.get_default(), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
 
     # Aktivieren Sie die Transparenz für das Fenster
     # win.set_app_paintable(True)  # Diese Zeile entfernen oder auskommentieren
