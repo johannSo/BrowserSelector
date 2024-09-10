@@ -2,7 +2,7 @@
 Choose your web browser for links in any app on Linux, and remember your choice if needed. Customize the browsers (or apps) you want to use.
 <br><br>
 
-![](https://github.com/johannSo/GTK-Browser_Selector/blob/main/images/v2.0.png?raw=true)
+![](https://github.com/johannSo/GTK-Browser_Selector/blob/main/images/v2.4.png?raw=true)
 
 <br><br>
 
@@ -44,7 +44,7 @@ The script is a combination of the functions from [Junction](https://github.com/
 * test it e.g. with `xdg-open https://gitlab.com`, or `xdg-open ../tests/ab.html`
 
 ## Support
-Please try a [Search](https://presearch.com/) first, then post your Issue -- maybe someone can help you. I'm just a hobby coder 😊
+If you find an Issue you can open an Issue page on Github but I dont know if i can responde to it, please try a search first!
 
 ## ToDo:
 - Add icons to app
@@ -55,7 +55,7 @@ MIT
 
 ## Status
 * Release: stable
-
+Status: In activ Development
 
 ## Idea:
 Original idea by [ToSo](https://gitlab.com/ToS0/browserselector/)
