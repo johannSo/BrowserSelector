@@ -27,7 +27,7 @@ browsers = [
     parse_desktop_entry(f'/home/{user}/.local/share/flatpak/exports/share/applications/com.brave.Browser.desktop'),
     parse_desktop_entry(f'/home/{user}/.local/share/applications/org.chromium.Chromium.desktop'),
     parse_desktop_entry('/usr/share/applications/firefox.desktop'),
-    parse_desktop_entry(f'/home/{user}/.local/share/flatpak/exports/share/applications/io.github.zen_browser.zen.desktop')
+    #    parse_desktop_entry(f'/home/{user}/.local/share/flatpak/exports/share/applications/io.github.zen_browser.zen.desktop')
 ]
 
 def launch_browser(exec_command, browser_name):
