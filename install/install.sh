@@ -1,11 +1,6 @@
 #!/bin/bash
 
-
-sudo apt update && sudo apt upgrade
-sudo apt autoremove
-sudo apt install python3
-sudo apt install pip
-sudo apt install libgtk-4-dev
-pip install PyGObject
-sudo apt install python3-xdg
-cp ../browserselector.desktop ~/.local/share/applications
+mkdir ~/bin/
+mkdir ~/bin/browserselector
+mv ../source/gui_bin ~/bin/browserselector
+mv ../source/browserselector/browserselector.desktop ~/.local/share/applications
