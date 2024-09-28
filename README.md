@@ -47,14 +47,13 @@ The script is a combination of the functions from [Junction](https://github.com/
 If you find an Issue you can open an Issue page on Github but I dont know if i can responde to it, please try a search first!
 
 ## ToDo:
-- Add icons to app
-- Add app icon
+- Make an automatic script implement Browsers
 
 ## License
 MIT
 
 ## Status
-* Release: stable
+* Release: stable <br>
 Status: In activ Development
 
 ## Idea:
