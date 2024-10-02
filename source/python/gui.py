@@ -125,3 +125,6 @@ def on_activate(app):
 app = Gtk.Application(application_id='com.joso.browserselector')  # Create a new GTK application
 app.connect('activate', on_activate)  # Connect the activation event to the function
 app.run(None)  # Start the application
+# ToDo:
+# - make automatic version for browser initialisation
+# - fix Problem when no url is given that not the last browser is openes but only the selector
