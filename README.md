@@ -44,7 +44,7 @@ The script is a combination of the functions from [Junction](https://github.com/
 * test it e.g. with `xdg-open https://gitlab.com`, or `xdg-open ../tests/ab.html`
 
 ## Support
-If you find an Issue you can open an Issue page on Github but I dont know if i can responde to it, please try a search first!
+If you find an bug you can open an Issue page on Github but I dont know if i can responde to it, please try a search first!
 
 ## ToDo:
 - Make an automatic script implement Browsers
