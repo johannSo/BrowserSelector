@@ -47,7 +47,7 @@ The script is a combination of the functions from [Junction](https://github.com/
 If you find an bug you can open an Issue page on Github but I dont know if i can responde to it, please try a search first!
 
 ## ToDo:
-- Make an automatic script implement Browsers
+- Make an automatic script to find and implement Browsers in the selector
 
 ## License
 MIT
